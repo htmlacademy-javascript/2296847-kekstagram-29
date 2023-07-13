@@ -1,0 +1,100 @@
+const descriptions = [
+  'Тачки',
+  'Карты',
+  'Деньги',
+  '2 ствола?',
+];
+
+const messages = [
+  'Всё отлично!',
+  'В целом всё неплохо. Но не всё.',
+  'Когда вы делаете фотографию, хорошо бы убирать палец из кадра. В конце концов это просто непрофессионально.',
+  'Моя бабушка случайно чихнула с фотоаппаратом в руках и у неё получилась фотография лучше.',
+  'Я поскользнулся на банановой кожуре и уронил фотоаппарат на кота и у меня получилась фотография лучше.',
+  'Лица у людей на фотке перекошены, как будто их избивают. Как можно было поймать такой неудачный момент?!',
+];
+
+const names = [
+  'Lili',
+  'Piter',
+  'Alex',
+  'Ulian',
+  'Fedot',
+];
+
+/**
+ * Генерирует случайное число в диапазоне
+ * @param {number} min
+ * @param {number} max
+ * @returns {number}
+ */
+const getRandomNumber = (min, max) => {
+  const value = min + Math.random() * (max - min);
+
+  return Math.round(value);
+};
+
+/**
+ * Берет случайное значение из массива
+ * @template T
+ * @param {Array<T>} items
+ * @returns {T}
+ */
+const getItemFromArray = (items) => {
+  const index = Math.floor(Math.random() * items.length);
+
+  return items[index];
+};
+
+/**
+ * Создает комментарий к одной фотографии
+ * @param {number} id
+ * @returns {getPhotoComment}
+ */
+const getPhotoComment = (id) => {
+  const avatar = `img/avatar-${getRandomNumber(1, 6)}.svg`;
+  const message = getItemFromArray(messages);
+  const name = getItemFromArray(names);
+
+  return {id, avatar, message, name};
+};
+
+/**
+ * Создает массив комментариев к фотографии
+ * @param {number} length
+ * @returns{Array<getPhotoComment>}
+ */
+const makeCommentsArray = (length) => {
+  const items = new Array(length).fill(1);
+
+  return items.map((start, index) => getPhotoComment(start + index));
+};
+
+/**
+ * Создает описание одной фотографии, опубликованной пользователем
+ * @param {number} id
+ * @returns {Photo}
+ */
+const getPhotoDescription = (id) => {
+  const url = `photos/${id}.jpg`;
+  const description = getItemFromArray(descriptions);
+  const likes = getRandomNumber(15, 200);
+  const comments = makeCommentsArray(getRandomNumber(0, 30));
+
+  return {id, url, description, likes, comments};
+};
+
+/**
+ * Создает массив из фотографий
+ * @param {number} length
+ * @returns {Array}
+ */
+const makePhotoArray = (length = 25) => {
+  const items = new Array(length).fill(1);
+
+  return items.map((start, index) => getPhotoDescription(start + index));
+};
+
+(makePhotoArray(25));
+
+
