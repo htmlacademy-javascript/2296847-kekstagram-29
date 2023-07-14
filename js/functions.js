@@ -37,3 +37,33 @@ const getDigits = (value) => {
 };
 
 getDigits (23425);
+
+/**
+ * Функция приводит значение времени к минутам
+ * @param {string} time
+ * @returns {number}
+ */
+const parseTime = (time) => {
+  const [hours, minutes] = time.split(':').map(Number);
+
+  return hours * 60 + minutes;
+};
+
+/**
+ * Функция проверяет укладывается ли встреча в рабочее время
+ * @param {string} workStart
+ * @param {string} workEnd
+ * @param {string} meetingStart
+ * @param {number} meetingDuration
+ * @returns {boolean}
+ */
+const isWithinWorkingTime = (workStart, workEnd, meetingStart, meetingDuration) => {
+  const workStartTime = parseTime(workStart);
+  const workEndTime = parseTime(workEnd);
+  const meetingStartTime = parseTime(meetingStart);
+
+  return (meetingStartTime >= workStartTime &&
+    meetingDuration <= workEndTime - meetingStartTime);
+};
+
+isWithinWorkingTime('08:00', '14:30', '14:00', 90);
