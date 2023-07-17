@@ -65,7 +65,7 @@ const getPhotoDescription = (id) => {
 /**
  * Создает массив из фотографий
  * @param {number} length
- * @returns {Array}
+ * @returns {Array<Photo>}
  */
 const makePhotoArray = (length = 25) => {
   const items = new Array(length).fill(1);
