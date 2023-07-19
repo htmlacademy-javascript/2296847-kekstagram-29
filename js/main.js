@@ -1,4 +1,4 @@
-import {makePhotoArray} from './data.js';
-import {renderSmallPhotos} from './photo-rendering.js';
+import {makePictureArray} from './data.js';
+import {renderSmallPictures} from './picture-rendering.js';
 
-renderSmallPhotos(makePhotoArray());
+renderSmallPictures(makePictureArray());

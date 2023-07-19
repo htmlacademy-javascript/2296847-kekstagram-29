@@ -1,14 +1,14 @@
 /**
- * @typedef Photo
+ * @typedef Picture
  * @prop {number} id
  * @prop {string} url
  * @prop {string} description
  * @prop {number} likes
- * @prop {Array<getPhotoComment>} comments
+ * @prop {Array<PictureComment>} comments
  */
 
 /**
- * @typedef getPhotoComment
+ * @typedef PictureComment
  * @prop {number} id
  * @prop {string} avatar
  * @prop {string} message

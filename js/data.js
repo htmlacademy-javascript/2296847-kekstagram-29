@@ -27,9 +27,9 @@ const names = [
 /**
  * Создает комментарий к одной фотографии
  * @param {number} id
- * @returns {getPhotoComment}
+ * @returns {PictureComment}
  */
-const getPhotoComment = (id) => {
+const getPictureComment = (id) => {
   const avatar = `img/avatar-${getRandomNumber(1, 6)}.svg`;
   const message = getItemFromArray(messages);
   const name = getItemFromArray(names);
@@ -40,20 +40,20 @@ const getPhotoComment = (id) => {
 /**
  * Создает массив комментариев к фотографии
  * @param {number} length
- * @returns{Array<getPhotoComment>}
+ * @returns{Array<PictureComment>}
  */
 const makeCommentsArray = (length) => {
   const items = new Array(length).fill(1);
 
-  return items.map((start, index) => getPhotoComment(start + index));
+  return items.map((start, index) => getPictureComment(start + index));
 };
 
 /**
  * Создает описание одной фотографии, опубликованной пользователем
  * @param {number} id
- * @returns {Photo}
+ * @returns {Picture}
  */
-const getPhotoDescription = (id) => {
+const getPictureDescription = (id) => {
   const url = `photos/${id}.jpg`;
   const description = getItemFromArray(descriptions);
   const likes = getRandomNumber(15, 200);
@@ -65,14 +65,14 @@ const getPhotoDescription = (id) => {
 /**
  * Создает массив из фотографий
  * @param {number} length
- * @returns {Array<Photo>}
+ * @returns {Array<Picture>}
  */
-const makePhotoArray = (length = 25) => {
+const makePictureArray = (length = 25) => {
   const items = new Array(length).fill(1);
 
-  return items.map((start, index) => getPhotoDescription(start + index));
+  return items.map((start, index) => getPictureDescription(start + index));
 };
 
-(makePhotoArray(25));
+(makePictureArray(25));
 
-export {makePhotoArray};
+export {makePictureArray};
