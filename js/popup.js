@@ -1,21 +1,21 @@
 /**
  * Закрывает popup нажатием Escape
- * @param {KeyboardEvent} evt
+ * @param {KeyboardEvent} event
  */
-const onDocumentKeydown = (evt) => {
-  if (evt.key === 'Escape') {
-    evt.preventDefault();
-    closePopup(document.querySelector('.overlay:not(.hidden)'));
+const onDocumentKeydown = (event) => {
+  if (event.key === 'Escape') {
+    event.preventDefault();
+    document.querySelector('.overlay:not(.hidden) .cancel').dispatchEvent(new Event ('click', {bubbles:true}));
   }
 };
 
 /**
  * Закрывает popup нажатием мыши
- * @param {MouseEvent & {target: Element, currentTarget: Element}} evt
+ * @param {PointerEvent & {target: Element, currentTarget: Element}} event
  */
-const onCloseButtonClick = (evt) => {
-  if (evt.target.closest('.cancel')) {
-    closePopup(evt.currentTarget);
+const onCloseButtonClick = (event) => {
+  if (event.target.closest('.cancel')) {
+    closePopup(event.currentTarget);
   }
 };
 

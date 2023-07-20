@@ -1,4 +1,4 @@
-import { renderBigPicture } from './big-picture';
+import {renderBigPicture} from './big-picture.js';
 
 /**
  * @type {HTMLTemplateElement}
@@ -18,9 +18,9 @@ const renderSmallPicture = (data) => {
   smallPicture.querySelector('.picture__likes').textContent = String(data.likes);
   smallPicture.querySelector('.picture__comments').textContent = String(data.comments.length);
 
-  smallPicture.addEventListener('click', (evt) => {
+  smallPicture.addEventListener('click', (event) => {
     renderBigPicture(data);
-    evt.preventDefault();
+    event.preventDefault();
   });
 
   return smallPicture;
