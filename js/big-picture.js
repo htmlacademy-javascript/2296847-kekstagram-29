@@ -42,8 +42,8 @@ const createComment = (data) => {
  */
 const renderCommentsGroup = (data) => {
   const commentsLoadButton = bigPicture.querySelector('.comments-loader');
-  const commentsCounter = bigPicture.querySelector('.social__comment-count');
-  const totalCount = bigPicture.querySelector('.comments-count');
+  const [shownCount, totalCount] = bigPicture.querySelectorAll('.comments-count');
+  const commentsTotal = data.length;
 
   totalCount.textContent = String(data.length);
   data = structuredClone(data);
@@ -52,7 +52,7 @@ const renderCommentsGroup = (data) => {
   return () => {
     commentsList.append(...data.splice(0, COMMENTS_GROUP_SIZE).map(createComment));
     commentsLoadButton.classList.toggle('hidden', data.length === 0);
-    commentsCounter.textContent = `${Number(totalCount.textContent) - data.length} из ${totalCount.textContent} комментариев`;
+    shownCount.textContent = String(commentsTotal - data.length);
   };
 };
 
@@ -65,8 +65,6 @@ const renderBigPicture = (data) => {
   bigPicture.querySelector('.big-picture__img img').setAttribute('src', data.url);
   bigPicture.querySelector('.social__caption').textContent = data.description;
   bigPicture.querySelector('.likes-count').textContent = String(data.likes);
-  bigPicture.querySelector('.comments-count').textContent = String(data.comments.length);
-  bigPicture.querySelector('.social__comments').replaceChildren(...data.comments.map(createComment));
 
   renderNextComments = renderCommentsGroup(data.comments);
   renderNextComments();
