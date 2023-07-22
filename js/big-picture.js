@@ -42,17 +42,16 @@ const createComment = (data) => {
  */
 const renderCommentsGroup = (data) => {
   const commentsLoadButton = bigPicture.querySelector('.comments-loader');
-  const [shownCount, totalCount] = bigPicture.querySelectorAll('.comments-count');
+  const commentsCounter = bigPicture.querySelector('.social__comment-count');
   const commentsTotal = data.length;
 
-  totalCount.textContent = String(data.length);
   data = structuredClone(data);
   commentsList.replaceChildren();
 
   return () => {
     commentsList.append(...data.splice(0, COMMENTS_GROUP_SIZE).map(createComment));
     commentsLoadButton.classList.toggle('hidden', data.length === 0);
-    shownCount.textContent = String(commentsTotal - data.length);
+    commentsCounter.textContent = `${String(commentsTotal - data.length)} из ${String(commentsTotal)} комментариев`;
   };
 };
 
