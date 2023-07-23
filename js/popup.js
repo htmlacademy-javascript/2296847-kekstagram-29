@@ -1,10 +1,12 @@
 /**
- * Закрывает popup нажатием Escape
- * @param {KeyboardEvent} event
+ * Закрывает popup нажатием Escape кроме текстовых полей
+ * {KeyboardEvent & {target: Element}} event
  */
 const onDocumentKeydown = (event) => {
-  if (event.key === 'Escape') {
-    event.preventDefault();
+  const isEscapeKey = event.key === 'Escape';
+  const isTextField = event.target.matches('input[type="text"], textarea');
+
+  if (isEscapeKey && !isTextField) {
     document.querySelector('.overlay:not(.hidden) .cancel').dispatchEvent(new Event ('click', {bubbles:true}));
   }
 };
@@ -38,8 +40,8 @@ function openPopup (popup) {
  */
 function closePopup (popup) {
   popup.classList.add('hidden');
-  popup.scrollTo(0, 0);
   popup.removeEventListener('click', onCloseButtonClick);
+  popup.dispatchEvent(new Event('hide', {bubbles:true}));
 
   document.body.classList.remove('modal-open');
   document.removeEventListener('keydown', onDocumentKeydown);
