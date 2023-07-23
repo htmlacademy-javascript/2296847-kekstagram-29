@@ -1,13 +1,5 @@
 import {renderPopup} from './new-picture-for-upload.js';
-
-/**
- * @type {HTMLFormElement}
- */
-const form = document.querySelector('#upload-select-image');
-const pristine = new Pristine(form, {
-  classTo:  'img-upload__field-wrapper',
-  errorTextParent:  'img-upload__field-wrapper'
-});
+import {form} from './validators.js';
 
 /**
  * @param {Event & {target: HTMLInputElement}} event
@@ -26,5 +18,3 @@ const onFormHide = () => {
 
 form.addEventListener('change', onFormChange);
 form.addEventListener('hide', onFormHide);
-
-renderPopup();
