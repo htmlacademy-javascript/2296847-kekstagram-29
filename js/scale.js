@@ -11,6 +11,9 @@ const DEFAULT_VALUE_UNPUT = 100;
 
 let currentValue = Number(parseInt(scaleValueInput.value, 10));
 
+/**
+ * Увеличивает картинку
+ */
 const scaleUp = () => {
   if (currentValue < MAX_VALUE_OF_CONTROL) {
     currentValue += VALUE_STEP;
@@ -19,6 +22,9 @@ const scaleUp = () => {
   }
 };
 
+/**
+ * Уменьшает картинку
+ */
 const scaleDown = () => {
   if (currentValue > MIN_VALUE_OF_CONTROL) {
     currentValue -= VALUE_STEP;
@@ -27,6 +33,9 @@ const scaleDown = () => {
   }
 };
 
+/**
+ * Сбрасывает размеры картинки на изначальные
+ */
 const resetScaleValue = () => {
   currentValue = DEFAULT_VALUE_UNPUT;
   scaleValueInput.value = `${currentValue}%`;

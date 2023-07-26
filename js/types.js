@@ -16,12 +16,5 @@
  */
 
 /**
- * @typedef EffectSlider
- * @prop {(type: EffectType) => void} setEffect
- * @prop {() => string} getCssValue
- * @prop {(type: string, listener: () => void) => void} on
- */
-
-/**
  * @typedef {'none' | 'chrome' | 'sepia' | 'marvin' | 'phobos' | 'heat'} EffectType
  */
