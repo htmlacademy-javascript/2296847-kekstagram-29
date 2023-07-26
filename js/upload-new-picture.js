@@ -1,5 +1,7 @@
 import {renderPopup} from './new-picture-for-upload.js';
 import {form} from './validators.js';
+import {resetScaleValue} from './scale.js';
+import {resetEffect} from'./effects-slider.js';
 
 /**
  * @param {Event & {target: HTMLInputElement}} event
@@ -14,6 +16,8 @@ const onFormChange = (event) => {
 
 const onFormHide = () => {
   form.reset();
+  resetScaleValue();
+  resetEffect();
 };
 
 form.addEventListener('change', onFormChange);

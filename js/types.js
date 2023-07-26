@@ -14,3 +14,7 @@
  * @prop {string} message
  * @prop {string} name
  */
+
+/**
+ * @typedef {'none' | 'chrome' | 'sepia' | 'marvin' | 'phobos' | 'heat'} EffectType
+ */

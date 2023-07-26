@@ -10,6 +10,7 @@ const renderPopup = (data) => {
   void data;
 
   openPopup(popup);
+
 };
 
 export {renderPopup};
