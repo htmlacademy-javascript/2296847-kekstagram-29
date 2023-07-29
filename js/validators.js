@@ -66,4 +66,4 @@ form.addEventListener('reset', () => {
   pristine.reset();
 });
 
-export {form};
+export {pristine};
