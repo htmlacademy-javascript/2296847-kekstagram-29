@@ -1,25 +1,15 @@
 /**
- * Генерирует случайное число в диапазоне
- * @param {number} min
- * @param {number} max
- * @returns {number}
+ * Функция отправляет запросы на сервер
+ * @param {string} url
+ * @param {RequestInit} [options]
+ * @returns
  */
-const getRandomNumber = (min, max) => {
-  const value = min + Math.random() * (max - min);
-
-  return Math.round(value);
+const request = async (url, options) => {
+  const response = await fetch(url, options);
+  if (!response.ok) {
+    throw new Error(`Ошибка ${response.status}: ${response.statusText}`);
+  }
+  return response.json();
 };
 
-/**
- * Берет случайное значение из массива
- * @template T
- * @param {Array<T>} items
- * @returns {T}
- */
-const getItemFromArray = (items) => {
-  const index = Math.floor(Math.random() * items.length);
-
-  return items[index];
-};
-
-export {getRandomNumber, getItemFromArray};
+export {request};
