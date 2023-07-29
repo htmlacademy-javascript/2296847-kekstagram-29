@@ -11,16 +11,6 @@ import {renderStatus} from './status.js';
 const form = document.querySelector('.img-upload__form');
 const popup = document.querySelector('.img-upload__overlay');
 
-/**
- * @param {File} data
- */
-const renderPopup = (data) => {
-
-  void data;
-
-  openPopup(popup);
-};
-
 const sendFormData = async () => {
   const url = form.getAttribute('action');
   const method = form.getAttribute('method');
@@ -38,7 +28,7 @@ const onFormChange = (event) => {
     const types = event.target.getAttribute('accept').split(', ');
 
     if (types.some((it) => data.name.endsWith(it))) {
-      renderPopup(data);
+      openPopup(popup);
 
     } else {
       const title = 'Неподдерживаемый формат';
@@ -51,16 +41,26 @@ const onFormChange = (event) => {
 };
 
 const onFormHide = () => {
-  form.reset();
+  pristine.reset();
   resetScaleValue();
   resetEffect();
 };
 
+/**
+ * @param {boolean} flag
+ */
+const setSubmitBlocking = (flag) => {
+  form['upload-submit'].toggleAttribute('disabled', flag);
+};
+
+const resetFormAndHidePopup = () => {
+  form['upload-cancel'].click();
+};
 
 /**
  * @param {SubmitEvent} event
  */
-async function onFormSubmit(event) {
+const onFormSubmit = async (event) => {
   event.preventDefault();
 
   if (!pristine.validate()) {
@@ -77,18 +77,7 @@ async function onFormSubmit(event) {
   } finally {
     setSubmitBlocking(false);
   }
-}
-
-/**
- * @param {boolean} flag
- */
-function setSubmitBlocking(flag) {
-  form['upload-submit'].toggleAttribute('disabled', flag);
-}
-
-function resetFormAndHidePopup() {
-  form['upload-cancel'].click();
-}
+};
 
 form.addEventListener('change', onFormChange);
 form.addEventListener('hide', onFormHide);

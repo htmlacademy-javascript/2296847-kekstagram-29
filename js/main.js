@@ -12,7 +12,7 @@ try {
   renderSmallPictures(data);
 
 } catch (error) {
-  const title = `Ошибка: ${error.message}`;
+  const title = `${error.message}`;
   const button = 'Закрыть';
 
   renderStatus('error', {title, button});
