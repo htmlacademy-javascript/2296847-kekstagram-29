@@ -8,8 +8,11 @@ import {renderStatus} from './status.js';
 /**
  * @type {HTMLFormElement}
  */
+
 const form = document.querySelector('.img-upload__form');
 const popup = document.querySelector('.img-upload__overlay');
+const image = popup.querySelector('img');
+const effectList = form.querySelector('.effects');
 
 const sendFormData = async () => {
   const url = form.getAttribute('action');
@@ -18,6 +21,18 @@ const sendFormData = async () => {
 
   await request(url, {method, body});
 };
+
+/**
+ * @param {string} url
+ */
+const setPreviewUrl = (url) => {
+  image.setAttribute('src', url);
+
+  effectList.querySelectorAll('span').forEach((it) => {
+    it.style.setProperty('background-image', `url(${url})`);
+  });
+};
+
 
 /**
  * @param {Event & {target: HTMLInputElement}} event
@@ -29,6 +44,7 @@ const onFormChange = (event) => {
 
     if (types.some((it) => data.name.endsWith(it))) {
       openPopup(popup);
+      setPreviewUrl(URL.createObjectURL(data));
 
     } else {
       const title = 'Неподдерживаемый формат';
