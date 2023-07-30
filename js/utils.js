@@ -12,4 +12,29 @@ const request = async (url, options) => {
   return response.json();
 };
 
-export {request};
+/**
+ * Устраняет дребежжание
+ * @template {Function} T
+ * @param {T} callback
+ * @param {number} delay
+ * @returns {T}
+ */
+const throttle = (callback, delay = 500) => {
+  let timeoutId;
+  let lastCallTime;
+
+  // @ts-ignore
+  return (...args) => {
+    const elapsedTime = Date.now() - lastCallTime;
+    const newDelay = Math.max(delay - elapsedTime, 0);
+
+    clearTimeout(timeoutId);
+
+    timeoutId = setTimeout(() => {
+      callback(...args);
+      lastCallTime = Date.now();
+    }, newDelay);
+  };
+};
+
+export {request, throttle};
