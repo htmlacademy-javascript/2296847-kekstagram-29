@@ -12,29 +12,13 @@ const request = async (url, options) => {
   return response.json();
 };
 
-/**
- * Устраняет дребезжание
- * @template {Function} T
- * @param {T} callback
- * @param {number} delay
- * @returns {T}
- */
-const throttle = (callback, delay = 500) => {
+const debounce = (callback, timeoutDelay = 500) => {
   let timeoutId;
-  let lastCallTime;
 
-  // @ts-ignore
-  return (...args) => {
-    const elapsedTime = Date.now() - lastCallTime;
-    const newDelay = Math.max(delay - elapsedTime, 0);
-
+  return (...rest) => {
     clearTimeout(timeoutId);
-
-    timeoutId = setTimeout(() => {
-      callback(...args);
-      lastCallTime = Date.now();
-    }, newDelay);
+    timeoutId = setTimeout(() => callback.apply(this, rest), timeoutDelay);
   };
 };
 
-export {request, throttle};
+export {request, debounce};
