@@ -74,25 +74,25 @@ const changeSorting = (button) => {
 };
 
 const createSortingFilter = (type, data) => {
-  const throttledGalery = debounce(updateSmallPicrures);
+  const debouncedGalery = debounce(updateSmallPicrures);
 
   if (type === 'onDefaultClick') {
     return (event) => {
-      throttledGalery(data);
+      debouncedGalery(data);
       changeSorting(event.target);
     };
   }
   if (type === 'onRandomClick') {
     return (event) => {
       const randomData = data.toSorted(() => Math.random() - 0.5).slice(0, RANDOM_LIMIT);
-      throttledGalery(randomData);
+      debouncedGalery(randomData);
       changeSorting(event.target);
     };
   }
   if (type === 'onDiscussedClick') {
     return (event) => {
       const popularData = data.toSorted((img1, img2) => img2.comments.length - img1.comments.length);
-      throttledGalery(popularData);
+      debouncedGalery(popularData);
       changeSorting(event.target);
     };
   }
