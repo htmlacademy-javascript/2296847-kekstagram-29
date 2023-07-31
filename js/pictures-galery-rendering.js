@@ -1,5 +1,5 @@
 import {renderBigPicture} from './big-picture.js';
-import {throttle} from './utils.js';
+import {debounce} from './utils.js';
 
 const RANDOM_LIMIT = 10;
 
@@ -74,7 +74,7 @@ const changeSorting = (button) => {
 };
 
 const createSortingFilter = (type, data) => {
-  const throttledGalery = throttle(updateSmallPicrures);
+  const throttledGalery = debounce(updateSmallPicrures);
 
   if (type === 'onDefaultClick') {
     return (event) => {
