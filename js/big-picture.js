@@ -2,14 +2,14 @@ import { openPopup } from './popup.js';
 
 const COMMENTS_GROUP_SIZE = 5;
 
+const bigPicture = document.querySelector('.big-picture');
+const commentsList = bigPicture.querySelector('.social__comments');
+const commentsItem = commentsList.querySelector('.social__comment');
+
 /**
  * @type {ReturnType<renderCommentsGroup>}
  */
 let renderNextComments;
-
-const bigPicture = document.querySelector('.big-picture');
-const commentsList = bigPicture.querySelector('.social__comments');
-const commentsItem = commentsList.querySelector('.social__comment');
 
 /**
  * @param {MouseEvent & {target: Element}} event
@@ -42,7 +42,8 @@ const createComment = (data) => {
  */
 const renderCommentsGroup = (data) => {
   const commentsLoadButton = bigPicture.querySelector('.comments-loader');
-  const commentsCounter = bigPicture.querySelector('.social__comment-count');
+  const totalComments = bigPicture.querySelector('.comments-count');
+  const shownComments = bigPicture.querySelector('.comments-count--showed');
   const commentsTotal = data.length;
 
   data = structuredClone(data);
@@ -51,7 +52,8 @@ const renderCommentsGroup = (data) => {
   return () => {
     commentsList.append(...data.splice(0, COMMENTS_GROUP_SIZE).map(createComment));
     commentsLoadButton.classList.toggle('hidden', data.length === 0);
-    commentsCounter.textContent = `${String(commentsTotal - data.length)} из ${String(commentsTotal)} комментариев`;
+    totalComments.textContent = String(commentsTotal);
+    shownComments.textContent = String(commentsTotal - data.length);
   };
 };
 

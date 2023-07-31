@@ -57,8 +57,6 @@ const updateSmallPicrures = (newData) => {
   renderSmallPictures(newData);
 };
 
-const throttledGalery = throttle(updateSmallPicrures);
-
 /**
  * Показывает кнопки сортировки изображений
  */
@@ -76,6 +74,8 @@ const changeSorting = (button) => {
 };
 
 const createSortingFilter = (type, data) => {
+  const throttledGalery = throttle(updateSmallPicrures);
+
   if (type === 'onDefaultClick') {
     return (event) => {
       throttledGalery(data);

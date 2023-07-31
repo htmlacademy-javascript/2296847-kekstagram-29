@@ -8,7 +8,6 @@ import {renderStatus} from './status.js';
 /**
  * @type {HTMLFormElement}
  */
-
 const form = document.querySelector('.img-upload__form');
 const popup = document.querySelector('.img-upload__overlay');
 const image = popup.querySelector('img');
@@ -32,7 +31,6 @@ const setPreviewUrl = (url) => {
     it.style.setProperty('background-image', `url(${url})`);
   });
 };
-
 
 /**
  * @param {Event & {target: HTMLInputElement}} event
