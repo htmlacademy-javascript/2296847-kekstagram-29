@@ -1,23 +1,12 @@
-/**
- * @type {HTMLFormElement}
- */
 const form = document.querySelector('.img-upload__form');
+const hashTagInput = form.querySelector('.text__hashtags');
+const commentInput = form.querySelector('.text__description');
 
 // @ts-ignore
 const pristine = new Pristine(form, {
   classTo:  'img-upload__field-wrapper',
   errorTextParent:  'img-upload__field-wrapper'
 });
-
-/**
- * @type {HTMLInputElement}
- */
-const hashTagInput = form.querySelector('.text__hashtags');
-
-/**
- * @type {HTMLTextAreaElement}
- */
-const commentInput = form.querySelector('.text__description');
 
 /**
  * @param {string} value

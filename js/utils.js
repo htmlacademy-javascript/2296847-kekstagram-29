@@ -13,7 +13,7 @@ const request = async (url, options) => {
 };
 
 /**
- * Устраняет дребежжание
+ * Устраняет дребезжание
  * @template {Function} T
  * @param {T} callback
  * @param {number} delay

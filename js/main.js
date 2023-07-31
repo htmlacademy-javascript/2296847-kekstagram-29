@@ -1,4 +1,4 @@
-import {renderSmallPictures, initSortingButtons} from './pictures-rendering.js';
+import {renderSmallPictures, initSortingButtons} from './pictures-galery-rendering.js';
 import './upload-new-picture.js';
 import { request } from './utils.js';
 import { renderStatus } from './status.js';
