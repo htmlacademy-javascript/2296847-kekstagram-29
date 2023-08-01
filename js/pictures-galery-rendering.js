@@ -73,8 +73,9 @@ const changeSorting = (button) => {
   button.classList.add('img-filters__button--active');
 };
 
+const debouncedGalery = debounce(updateSmallPicrures);
+
 const createSortingFilter = (type, data) => {
-  const debouncedGalery = debounce(updateSmallPicrures);
 
   if (type === 'onDefaultClick') {
     return (event) => {
