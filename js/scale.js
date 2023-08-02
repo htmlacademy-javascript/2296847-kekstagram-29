@@ -14,7 +14,7 @@ let currentValue = Number(parseInt(scaleValueInput.value, 10));
 /**
  * Увеличивает картинку
  */
-const onScaleUp = () => {
+const onScaleUpClick = () => {
   if (currentValue < MAX_VALUE_OF_CONTROL) {
     currentValue += VALUE_STEP;
     scaleValueInput.value = `${currentValue}%`;
@@ -25,7 +25,7 @@ const onScaleUp = () => {
 /**
  * Уменьшает картинку
  */
-const onScaleDown = () => {
+const onScaleDownClick = () => {
   if (currentValue > MIN_VALUE_OF_CONTROL) {
     currentValue -= VALUE_STEP;
     scaleValueInput.value = `${currentValue}%`;
@@ -42,7 +42,7 @@ const resetScaleValue = () => {
   image.style.transform = `scale(${currentValue / 100})`;
 };
 
-buttonBigger.addEventListener('click', onScaleUp);
-buttonSmaller.addEventListener('click', onScaleDown);
+buttonBigger.addEventListener('click', onScaleUpClick);
+buttonSmaller.addEventListener('click', onScaleDownClick);
 
 export {resetScaleValue};
